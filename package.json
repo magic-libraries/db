@@ -1,0 +1,59 @@
+{
+  "name": "@magic-libraries/db",
+  "version": "0.0.1",
+  "author": "Wizards & Witches",
+  "license": "AGPL-3.0",
+  "description": "localstorage backed client key value database for @magic.",
+  "homepage": "https://magic-libraries.github.io/db/",
+  "engines": {
+    "node": ">=12.2.0"
+  },
+  "scripts": {
+    "start": "t -p",
+    "format": "f -w --exclude docs",
+    "test": "t --exclude docs example config.js",
+    "build": "NODE_ENV=production magic build",
+    "devbuild": "magic build --watch src",
+    "prod": "NODE_ENV=production magic build serve",
+    "dev": "magic dev --watch src",
+    "calls": "calls"
+  },
+  "main": "src/index.mjs",
+  "module": "src/index.mjs",
+  "type": "module",
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magic-libraries/db.git"
+  },
+  "bugs": {
+    "url": "https://github.com/magic-libraries/db/issues"
+  },
+  "devDependencies": {
+    "@magic-modules/gdpr": "0.0.4",
+    "@magic-modules/git-badges": "0.0.3",
+    "@magic-modules/light-switch": "0.0.2",
+    "@magic-modules/pre": "0.0.2",
+    "@magic-themes/docs": "0.0.2",
+    "@magic/core": "0.0.2",
+    "@magic/test": "0.1.23"
+  },
+  "keywords": [
+    "magic",
+    "localstorage",
+    "store",
+    "db",
+    "hyperapp"
+  ],
+  "contributors": [
+    {
+      "name": "jascha ehrenreich",
+      "github": "jaeh"
+    }
+  ],
+  "dependencies": {
+    "@magic-libraries/json": "0.0.1"
+  }
+}
