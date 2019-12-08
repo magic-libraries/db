@@ -45,6 +45,9 @@
     "localstorage",
     "store",
     "db",
+    "client",
+    "browser",
+    "magic-libraries",
     "hyperapp"
   ],
   "contributors": [
