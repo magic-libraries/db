@@ -1,6 +1,6 @@
 export const getStore = () => (window && window.localStorage) || {}
 
-export const write = (dispatch, { action, key, state, value }) => {
+export const write = (state, { key, value }) => {
   const store = lib.db.getStore()
 
   let res = lib.json.stringify(value)
@@ -35,7 +35,7 @@ export const write = (dispatch, { action, key, state, value }) => {
   }
 }
 
-export const read = (dispatch, { action, key, state }) => {
+export const read = (state, { action, key }) => {
   const store = lib.db.getStore()
 
   let res = undefined
@@ -48,7 +48,7 @@ export const read = (dispatch, { action, key, state }) => {
       errors.db = errors.db || []
 
       const err = {
-        code: 'db:write',
+        code: 'db:read',
         msg: 'Invalid JSON, could not read from db',
       }
 
@@ -72,7 +72,7 @@ export const read = (dispatch, { action, key, state }) => {
   }
 }
 
-export const clear = (dispatch, { key, state }) => {
+export const clear = (state, { key }) => {
   const store = lib.db.getStore()
   if (store[key]) {
     store.removeItem(key)
