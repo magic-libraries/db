@@ -28,25 +28,70 @@ export const View = state => [
 
   Pre(`
 export const View = ({ key, state }) =>
-  div([
+  div({ onload: state => console.log('load') || state }, [
     div(['key: ', key]),
     div([
       h4('controls'),
-      button(
-        {
-          onclick: [
-            lib.db.write,
-            { key, value: 'testing ' + ${Math.ceil(Math.random() * 100000)},
-          ],
-        },
-        'write',
-      ),
-      button({ onclick: [lib.db.read, { key }] }, 'read'),
-      button({ onclick: [lib.db.clear, { key }] }, 'clear'),
+      button({ onclick: [actions.examplestore.set, { key }] }, 'write'),
+      button({ onclick: [actions.examplestore.get, { key }] }, 'read'),
+      button({ onclick: [actions.examplestore.del, { key }] }, 'delete'),
     ]),
+
     div('value in local storage:'),
-    state.db && state.db[key] ? div(state.db[key]) : div('no value in db'),
+    state[key]
+      ? ['state is accessible via state["' + key + '"]', div(state[key])]
+      : div('no value in db'),
   ])
+
+export const actions = {
+  examplestore: {
+    get: (state, { key }) => [
+      state,
+      [
+        lib.db.get,
+        {
+          key,
+          action: actions.examplestore.refresh,
+        },
+      ],
+    ],
+
+    set: (state, { key }) => [
+      state,
+      [
+        lib.db.set,
+        {
+          key,
+          value: 'testing ' + Math.ceil(Math.random() * 100000),
+          action: actions.examplestore.refresh,
+        },
+      ],
+    ],
+
+    del: (state, { key }) => [
+      state,
+      [
+        lib.db.del,
+        {
+          key,
+          action: actions.examplestore.refresh,
+        },
+      ],
+    ],
+
+    refresh: (state, { key, value }) => {
+      console.log('refresh', { key, value })
+
+      if (key) {
+        state[key] = value
+      }
+
+      return {
+        ...state,
+      }
+    },
+  },
+}
   `),
 
   p('renders:'),
