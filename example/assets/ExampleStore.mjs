@@ -1,5 +1,5 @@
 export const View = ({ key, state }) =>
-  div({ onload: state => console.log('load') || state }, [
+  div([
     div(['key: ', key]),
     div([
       h4('controls'),

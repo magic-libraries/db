@@ -28,7 +28,7 @@ export const View = state => [
 
   Pre(`
 export const View = ({ key, state }) =>
-  div({ onload: state => console.log('load') || state }, [
+  div([
     div(['key: ', key]),
     div([
       h4('controls'),
@@ -93,6 +93,10 @@ export const actions = {
   },
 }
   `),
+
+  p('then use it in a page:'),
+
+  Pre(`export const View = state => ExampleStore({ state, key: 'magic-examplestore' })`),
 
   p('renders:'),
   ExampleStore({ state, key: 'magic-examplestore' }),

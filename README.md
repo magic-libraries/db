@@ -28,7 +28,7 @@ and [@magic-modules/gdpr](https://github.com/magic-modules/gdpr) for an actual u
 
 ```javascript
 export const View = ({ key, state }) =>
-  div({ onload: state => console.log('load') || state }, [
+  div([
     div(['key: ', key]),
     div([
       h4('controls'),
