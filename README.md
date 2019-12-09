@@ -20,31 +20,75 @@ npm install --save-exact @magic-libraries/db
 #### <a name="usage"></a>usage
 in a page/component, just use the lib.db functions, either as action or effect.
 
+localstorage is synchronous, so we do not have to await.
+
 see [ExampleStore](https://github.com/magic-libraries/db/tree/master/example/assets/ExampleStore) for a reference implementation,
 
 and [@magic-modules/gdpr](https://github.com/magic-modules/gdpr) for an actual usecase.
 
 ```javascript
 export const View = ({ key, state }) =>
-  div([
+  div({ onload: state => console.log('load') || state }, [
     div(['key: ', key]),
     div([
       h4('controls'),
-      button({ onclick: [actions.examplestore.write, { key, value: 'testing' + Math.ceil(Math.random() * 100000) }] }, 'write'),
-      button({ onclick: [actions.examplestore.read, { key }] }, 'read'),
-      button({ onclick: [actions.examplestore.clear, { key }] }, 'clear'),
+      button({ onclick: [actions.es.write, { key }] }, 'write'),
+      button({ onclick: [actions.es.read, { key }] }, 'read'),
+      button({ onclick: [actions.es.clear, { key }] }, 'clear'),
     ]),
     div('value in local storage:'),
-    state.db && state.db[key]
-      ? div(lib.json.stringify(state.db[key]))
+    state[key]
+      ? [`state is accessible via state['${key}']`, div(state[key])]
       : div('no value in db'),
   ])
 
 export const actions = {
-  examplestore: {
-    write: (state, props) => [lib.db.write, { ...props, state }],
-    read: (state, props) => [lib.db.read, { ...props, state }],
-    clear: (state, props) => [lib.db.clear, { ...props, state }],
+  es: {
+    read: (state, { key }) => [
+      state,
+      [
+        lib.db.read,
+        {
+          key,
+          action: actions.examplestore.refresh,
+        },
+      ],
+    ],
+
+    write: (state, { key }) => [
+      state,
+      [
+        lib.db.write,
+        {
+          key,
+          value: `testing ${Math.ceil(Math.random() * 100000)}`,
+          action: actions.examplestore.refresh,
+        },
+      ],
+    ],
+
+    clear: (state, { key }) => [
+      state,
+      [
+        lib.db.clear,
+        {
+          key,
+          action: actions.examplestore.refresh,
+        }
+      ],
+    ],
+
+    refresh: (state, { key, value }) => {
+      console.log('refresh', { key, value })
+
+      if (key) {
+        state[key] = value
+      }
+
+      return {
+        ...state,
+      }
+    },
   },
 }
 ```
