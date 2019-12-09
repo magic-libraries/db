@@ -3,15 +3,11 @@ export const View = ({ key, state }) =>
     div(['key: ', key]),
     div([
       h4('controls'),
-      button(
-        {
-          onclick: [actions.examplestore.write, { key }],
-        },
-        'write',
-      ),
-      button({ onclick: [actions.examplestore.read, { key }] }, 'read'),
-      button({ onclick: [actions.examplestore.clear, { key }] }, 'clear'),
+      button({ onclick: [actions.examplestore.set, { key }] }, 'write'),
+      button({ onclick: [actions.examplestore.get, { key }] }, 'read'),
+      button({ onclick: [actions.examplestore.del, { key }] }, 'delete'),
     ]),
+
     div('value in local storage:'),
     state[key]
       ? [`state is accessible via state['${key}']`, div(state[key])]
@@ -20,10 +16,10 @@ export const View = ({ key, state }) =>
 
 export const actions = {
   examplestore: {
-    read: (state, { key }) => [
+    get: (state, { key }) => [
       state,
       [
-        lib.db.read,
+        lib.db.get,
         {
           key,
           action: actions.examplestore.refresh,
@@ -31,10 +27,10 @@ export const actions = {
       ],
     ],
 
-    write: (state, { key }) => [
+    set: (state, { key }) => [
       state,
       [
-        lib.db.write,
+        lib.db.set,
         {
           key,
           value: `testing ${Math.ceil(Math.random() * 100000)}`,
@@ -43,14 +39,14 @@ export const actions = {
       ],
     ],
 
-    clear: (state, { key }) => [
+    del: (state, { key }) => [
       state,
       [
-        lib.db.clear,
+        lib.db.del,
         {
           key,
           action: actions.examplestore.refresh,
-        }
+        },
       ],
     ],
 

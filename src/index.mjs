@@ -1,7 +1,7 @@
-export const getStore = () => (typeof window !== 'undefined' && window.localStorage) || {}
+export const init = () => (typeof window !== 'undefined' && window.localStorage) || {}
 
-export const write = (dispatch, { action, key, value }) => {
-  const store = lib.db.getStore()
+export const set = (dispatch, { action, key, value }) => {
+  const store = lib.db.init()
 
   let res = lib.json.stringify(value)
 
@@ -15,8 +15,8 @@ export const write = (dispatch, { action, key, value }) => {
   dispatch(action, { key, value })
 }
 
-export const read = (dispatch, { action, key }) => {
-  const store = lib.db.getStore()
+export const get = (dispatch, { action, key }) => {
+  const store = lib.db.init()
 
   let value = undefined
 
@@ -32,8 +32,8 @@ export const read = (dispatch, { action, key }) => {
   dispatch(action, { key, value })
 }
 
-export const clear = (dispatch, { action, key }) => {
-  const store = lib.db.getStore()
+export const del = (dispatch, { action, key }) => {
+  const store = lib.db.init()
   if (store[key]) {
     store.removeItem(key)
   }
@@ -42,8 +42,8 @@ export const clear = (dispatch, { action, key }) => {
 }
 
 export default {
-  write,
-  read,
-  clear,
-  getStore,
+  set,
+  get,
+  del,
+  init,
 }
