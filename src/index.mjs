@@ -1,78 +1,38 @@
-export const getStore = () => (window && window.localStorage) || {}
+export const getStore = () => (typeof window !== 'undefined' && window.localStorage) || {}
 
-export const write = (state, { key, value }) => {
+export const write = (dispatch, { action, key, value }) => {
   const store = lib.db.getStore()
 
   let res = lib.json.stringify(value)
 
   if (typeof res === 'Error') {
-    const { errors = {} } = state
-    errors.db = errors.db || []
-
-    const err = {
-      code: 'db:write',
-      msg: 'Invalid JSON, could not write to db',
-    }
-
-    errors.db.push(err)
-
-    return {
-      ...state,
-      errors,
-    }
+    dispatch(action, new Error(`db:write ${key} ${val}`))
+    return
   }
 
   store[key] = res
 
-  const { db = {} } = state
-
-  return {
-    ...state,
-    db: {
-      ...db,
-      [key]: value,
-    },
-  }
+  dispatch(action, { key, value })
 }
 
-export const read = (state, { action, key }) => {
+export const read = (dispatch, { action, key }) => {
   const store = lib.db.getStore()
 
-  let res = undefined
-  const value = store[key]
+  let value = undefined
 
-  if (value) {
-    res = lib.json.parse(value)
+  if (store[key]) {
+    value = lib.json.parse(store[key])
+
     if (typeof res === 'Error') {
-      const { errors = {} } = state
-      errors.db = errors.db || []
-
-      const err = {
-        code: 'db:read',
-        msg: 'Invalid JSON, could not read from db',
-      }
-
-      errors.db.push(err)
-
-      return {
-        ...state,
-        errors,
-      }
+      dispatch(action,  new Error(`db:read ${key}`))
+      return
     }
   }
 
-  const { db = {} } = state
-
-  return {
-    ...state,
-    db: {
-      ...db,
-      [key]: res,
-    },
-  }
+  dispatch(action, { key, value })
 }
 
-export const clear = (state, { key }) => {
+export const clear = (dispatch, {action, key }) => {
   const store = lib.db.getStore()
   if (store[key]) {
     store.removeItem(key)
@@ -80,9 +40,7 @@ export const clear = (state, { key }) => {
 
   delete state.db[key]
 
-  return {
-    ...state,
-  }
+  dispatch(action)
 }
 
 export default {
