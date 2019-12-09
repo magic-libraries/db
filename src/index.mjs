@@ -24,7 +24,7 @@ export const read = (dispatch, { action, key }) => {
     value = lib.json.parse(store[key])
 
     if (typeof res === 'Error') {
-      dispatch(action,  new Error(`db:read ${key}`))
+      dispatch(action, new Error(`db:read ${key}`))
       return
     }
   }
@@ -32,15 +32,13 @@ export const read = (dispatch, { action, key }) => {
   dispatch(action, { key, value })
 }
 
-export const clear = (dispatch, {action, key }) => {
+export const clear = (dispatch, { action, key }) => {
   const store = lib.db.getStore()
   if (store[key]) {
     store.removeItem(key)
   }
 
-  delete state.db[key]
-
-  dispatch(action)
+  dispatch(action, { key, value: undefined })
 }
 
 export default {
