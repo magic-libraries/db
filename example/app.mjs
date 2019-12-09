@@ -1,6 +1,6 @@
 export const state = {
-  title: '@magic-libraries/store',
-  description: 'localstorage backed client key value database for @magic',
+  title: '@magic-libraries/db',
+  description: 'localstorage backed browser key value database for @magic',
 
   logotext: '@magic-libraries/db',
   menu: [
