@@ -18,9 +18,9 @@ npm install --save-exact @magic-libraries/db
 ```
 
 #### <a name="usage"></a>usage
-in a page/component, just use the lib.db functions, either as action or effect.
+in a page/component, just use the lib.db effects.
 
-localstorage is synchronous, so we do not have to await.
+localstorage is synchronous, so we do not even have to await.
 
 see [ExampleStore](https://github.com/magic-libraries/db/tree/master/example/assets/ExampleStore) for a reference implementation,
 
