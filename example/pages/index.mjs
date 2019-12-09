@@ -32,28 +32,23 @@ export const View = ({ key, state }) =>
     div(['key: ', key]),
     div([
       h4('controls'),
-      button({ onclick: [actions.examplestore.write, { key, value: 'testing' + Math.ceil(Math.random() * 100000) }] }, 'write'),
-      button({ onclick: [actions.examplestore.read, { key }] }, 'read'),
-      button({ onclick: [actions.examplestore.clear, { key }] }, 'clear'),
+      button(
+        {
+          onclick: [
+            lib.db.write,
+            { key, value: 'testing ' + ${Math.ceil(Math.random() * 100000)},
+          ],
+        },
+        'write',
+      ),
+      button({ onclick: [lib.db.read, { key }] }, 'read'),
+      button({ onclick: [lib.db.clear, { key }] }, 'clear'),
     ]),
-
     div('value in local storage:'),
-    state.db && state.db[key]
-      ? div(lib.json.stringify(state.db[key]))
-      : div('no value in db'),
+    state.db && state.db[key] ? div(state.db[key]) : div('no value in db'),
   ])
-
-
-export const actions = {
-  examplestore: {
-    write: (state, props) => [lib.db.write, { ...props, state }],
-
-    read: (state, props) => [lib.db.read, { ...props, state }],
-
-    clear: (state, props) => [lib.db.clear, { ...props, state }],
-  },
-}
   `),
+
   p('renders:'),
   ExampleStore({ state, key: 'magic-examplestore' }),
 

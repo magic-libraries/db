@@ -1,14 +1,11 @@
 export const View = ({ key, state }) =>
-  div([
+  div({ onload: state => console.log('load') || state }, [
     div(['key: ', key]),
     div([
       h4('controls'),
       button(
         {
-          onclick: [
-            actions.examplestore.write,
-            { key, value: `testing ${Math.ceil(Math.random() * 100000)}` },
-          ],
+          onclick: [actions.examplestore.write, { key }],
         },
         'write',
       ),
@@ -16,15 +13,57 @@ export const View = ({ key, state }) =>
       button({ onclick: [actions.examplestore.clear, { key }] }, 'clear'),
     ]),
     div('value in local storage:'),
-    state.db && state.db[key] ? div(lib.json.stringify(state.db[key])) : div('no value in db'),
+    state[key]
+      ? [`state is accessible via state['${key}']`, div(state[key])]
+      : div('no value in db'),
   ])
 
 export const actions = {
   examplestore: {
-    write: (state, props) => [lib.db.write, { ...props, state }],
+    read: (state, { key }) => [
+      state,
+      [
+        lib.db.read,
+        {
+          key,
+          action: actions.examplestore.refresh,
+        },
+      ],
+    ],
 
-    read: (state, props) => [lib.db.read, { ...props, state }],
+    write: (state, { key }) => [
+      state,
+      [
+        lib.db.write,
+        {
+          key,
+          value: `testing ${Math.ceil(Math.random() * 100000)}`,
+          action: actions.examplestore.refresh,
+        },
+      ],
+    ],
 
-    clear: (state, props) => [lib.db.clear, { ...props, state }],
+    clear: (state, { key }) => [
+      state,
+      [
+        lib.db.clear,
+        {
+          key,
+          action: actions.examplestore.refresh,
+        }
+      ],
+    ],
+
+    refresh: (state, { key, value }) => {
+      console.log('refresh', { key, value })
+
+      if (key) {
+        state[key] = value
+      }
+
+      return {
+        ...state,
+      }
+    },
   },
 }
