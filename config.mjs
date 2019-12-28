@@ -4,4 +4,6 @@ export default {
   URL: 'magic-libraries.github.io/db',
   PUBLIC: 'docs',
   THEME: 'docs',
+
+  HOIST: 'Gdpr',
 }
