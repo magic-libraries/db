@@ -6,7 +6,7 @@ export const set = (dispatch, { action, key, value }) => {
   let res = lib.json.stringify(value)
 
   if (typeof res === 'Error') {
-    dispatch(action, new Error(`db:write ${key} ${val}`))
+    dispatch(action, new Error(`db:write ${key}`))
     return
   }
 
@@ -20,7 +20,7 @@ export const get = (dispatch, { action, key }) => {
 
   let value = undefined
 
-  if (store[key]) {
+  if (key && store[key]) {
     value = lib.json.parse(store[key])
 
     if (typeof res === 'Error') {
@@ -34,7 +34,7 @@ export const get = (dispatch, { action, key }) => {
 
 export const del = (dispatch, { action, key }) => {
   const store = lib.db.init()
-  if (store[key]) {
+  if (key && store[key]) {
     store.removeItem(key)
   }
 
