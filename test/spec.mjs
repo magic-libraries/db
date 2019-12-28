@@ -3,8 +3,8 @@ import { is } from '@magic/test'
 import db from '../src/index.mjs'
 
 export default [
-  { fn: () => db.write, expect: is.fn, info: 'db.write is a function' },
-  { fn: () => db.read, expect: is.fn, info: 'db.read is a function' },
-  { fn: () => db.clear, expect: is.fn, info: 'db.clear is a function' },
-  { fn: () => db.getStore, expect: is.fn, info: 'db.getStore is a function' },
+  { fn: () => db.set, expect: is.fn, info: 'db.set is a function' },
+  { fn: () => db.get, expect: is.fn, info: 'db.get is a function' },
+  { fn: () => db.del, expect: is.fn, info: 'db.del is a function' },
+  { fn: () => db.init, expect: is.fn, info: 'db.init is a function' },
 ]
