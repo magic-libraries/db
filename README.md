@@ -101,6 +101,12 @@ first release
 ##### 0.0.2
 update readme.
 
+##### 0.0.3
+remove src/lib, libraries get imported automagically.
+
+##### 0.0.4 - unreleased
+...
+
 [npm-image]: https://img.shields.io/npm/v/@magic-libraries/db.svg
 [npm-url]: https://www.npmjs.com/package/@magic-libraries/db
 [travis-image]: https://img.shields.io/travis/com/magic-libraries/db/master
