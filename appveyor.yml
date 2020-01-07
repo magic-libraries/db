@@ -4,9 +4,9 @@ version: "{build}"
 
 environment:
   matrix:
-    - nodejs_version: "12"
+    - nodejs_version: "13.5.0"
       platform: x64
-    - nodejs_version: "12"
+    - nodejs_version: "13.5.0"
       platform: x86
 
 matrix:
