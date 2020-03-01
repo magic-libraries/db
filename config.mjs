@@ -5,5 +5,5 @@ export default {
   PUBLIC: 'docs',
   THEME: 'docs',
 
-  HOIST: 'Gdpr',
+  HOIST: ['LightSwitch', 'Gdpr'],
 }
