@@ -1,15 +1,14 @@
-
 # ${state.title}
 
 ${state.description}
 
 <GitBadges>magic-libraries/db</GitBadges>
 
-<h3 id="installation">installation</h3>
+### installation
 
-<Pre>npm install --save-exact magic-libraries/db</Pre>
+`npm install --save-exact magic-libraries/db`
 
-<h3 id="usage">usage</h3>
+### usage
 
 in a page/component, just use the lib.db functions, either as action or effect.
 
@@ -18,7 +17,7 @@ for a reference implementation and
 [@magic-modules/gdpr](https://github.com/magic-modules/gdpr)
 for an actual usecase
 
-<Pre>
+```
 export const View = ({ key, state }) =>
   div([
     div(["key:  key]),
@@ -84,17 +83,17 @@ export const actions = {
     },
   },
 }
-</Pre>
+```
 
 then use it in a page:
 
-<Pre>&lt;ExampleStore state key="magic-examplestore">&lt;/ExampleStore></Pre>
+`<ExampleStore state key="magic-examplestore"><ExampleStore>`
 
 renders:
 
 <ExampleStore state key="magic-examplestore"></ExampleStore>
 
-<h3 id="source">source</h3>
+### source
 
 the source for this page is in the
 [example directory](https://github.com/magic-libraries/db/tree/master/example)
