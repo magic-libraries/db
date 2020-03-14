@@ -2,7 +2,7 @@
 
 ${state.description}
 
-<GitBadges>magic-libraries/db</GitBadges>
+<GitBadges>@magic-libraries/db</GitBadges>
 
 ### installation
 
