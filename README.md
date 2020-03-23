@@ -107,7 +107,10 @@ remove src/lib, libraries get imported automagically.
 ##### 0.0.4
 require node 13.5.0
 
-##### 0.0.5 - unreleased
+##### 0.0.5
+update @magic-libraries/json
+
+##### 0.0.6 - unreleased
 ...
 
 [npm-image]: https://img.shields.io/npm/v/@magic-libraries/db.svg
