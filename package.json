@@ -6,7 +6,7 @@
   "description": "localstorage backed client key value database for @magic.",
   "homepage": "https://magic-libraries.github.io/db/",
   "engines": {
-    "node": ">=13.5.0"
+    "node": ">=14.2.0"
   },
   "engineStrict": true,
   "scripts": {
