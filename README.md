@@ -110,7 +110,10 @@ require node 13.5.0
 ##### 0.0.5
 update @magic-libraries/json
 
-##### 0.0.6 - unreleased
+##### 0.0.6
+bump required node version
+
+##### 0.0.7 - unreleased
 ...
 
 [npm-image]: https://img.shields.io/npm/v/@magic-libraries/db.svg
