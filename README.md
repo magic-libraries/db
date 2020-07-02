@@ -22,7 +22,7 @@ in a page/component, just use the lib.db effects.
 
 localstorage is synchronous, so we do not even have to await.
 
-see [ExampleStore](https://github.com/magic-libraries/db/tree/master/example/assets/ExampleStore) for a reference implementation,
+see [ExampleStore](https://github.com/magic-libraries/db/tree/master/example/assets/ExampleStore.mjs) for a reference implementation,
 
 and [@magic-modules/gdpr](https://github.com/magic-modules/gdpr) for an actual usecase.
 
