@@ -120,7 +120,12 @@ bump required node version to 14.2.0
 * bump required node version to 14.15.4
 * update dependencies
 
-##### 0.0.9 - unreleased
+##### 0.0.9
+* bugfix: db.get used undefined "res" variable
+* update dependencies and add tests
+* use store.hasOwnProperty to check for values to allow false, undefined and null to be saved and read
+
+##### 0.0.10 - unreleased
 ...
 
 [npm-image]: https://img.shields.io/npm/v/@magic-libraries/db.svg
