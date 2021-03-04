@@ -23,7 +23,7 @@ export const get = (dispatch, { action, key }) => {
   if (key && store[key]) {
     value = lib.json.parse(store[key])
 
-    if (typeof res === 'Error') {
+    if (typeof value === 'Error') {
       dispatch(action, new Error(`db:read ${key}`))
       return
     }
