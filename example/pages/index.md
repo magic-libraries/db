@@ -12,7 +12,7 @@ ${state.description}
 
 in a page/component, just use the lib.db functions, either as action or effect.
 
-see [ExampleStore](https://github.com/magic-libraries/db/tree/master/example/assets/ExampleStore)
+see [ExampleStore](https://github.com/magic-libraries/db/blob/master/example/assets/ExampleStore.mjs)
 for a reference implementation and
 [@magic-modules/gdpr](https://github.com/magic-modules/gdpr)
 for an actual usecase
