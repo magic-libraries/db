@@ -20,7 +20,7 @@ export const get = (dispatch, { action, key }) => {
 
   let value = undefined
 
-  if (key && store[key]) {
+  if (key && store.hasOwnProperty(key)) {
     value = lib.json.parse(store[key])
 
     if (typeof value === 'Error') {
