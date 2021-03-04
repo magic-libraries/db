@@ -45,7 +45,7 @@ export default {
       {
         fn: () => dispatchedTest(lib.db.set, { key: 'key1', value: { testing: 'value' }, action }),
         expect: is.deep.equal({ key: 'key1', value: { testing: 'value' } }),
-        info: 'db.set returns keys'
+        info: 'db.set returns keys',
       },
       {
         fn: () => dispatchedTest(lib.db.set, { key: 'key2', value: { testing: null }, action }),
@@ -95,6 +95,6 @@ export default {
         expect: undefined,
         info: 'db.del can delete values',
       },
-    ]
+    ],
   },
 }
