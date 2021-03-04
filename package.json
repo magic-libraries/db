@@ -1,6 +1,6 @@
 {
   "name": "@magic-libraries/db",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "Wizards & Witches",
   "license": "AGPL-3.0",
   "description": "localstorage backed client key value database for @magic.",
