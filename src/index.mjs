@@ -34,8 +34,8 @@ export const get = (dispatch, { action, key }) => {
 
 export const del = (dispatch, { action, key }) => {
   const store = lib.db.init()
-  if (key && store[key]) {
-    store.removeItem(key)
+  if (key) {
+    delete store[key]
   }
 
   dispatch(action, { key, value: undefined })
