@@ -125,8 +125,8 @@ bump required node version to 14.2.0
 * update dependencies and add tests
 * use store.hasOwnProperty to check for values to allow false, undefined and null to be saved and read
 
-##### 0.0.10 - unreleased
-* update dev dependencies
+##### 0.0.10
+* update dependencies
 
 ##### 0.0.11 - unreleased
 ...
