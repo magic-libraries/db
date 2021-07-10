@@ -33,7 +33,7 @@
     "url": "https://github.com/magic-libraries/db/issues"
   },
   "dependencies": {
-    "@magic-libraries/json": "0.0.8"
+    "@magic-libraries/json": "0.0.9"
   },
   "devDependencies": {
     "@magic-modules/git-badges": "0.0.11",
